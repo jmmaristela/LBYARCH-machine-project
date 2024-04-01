@@ -1,3 +1,6 @@
+// BACOSA, Gabriel Luis B.
+// MARISTELA, Joseph Miguel A.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
