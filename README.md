@@ -95,16 +95,18 @@ else {
 }
 ```
 
-Below are the screenshots of the program output 
+Below are the screenshots of the program output: 
 
 ### Debug Mode (C and x86-64)
-
-
+<img width="800" alt="Screenshot 2024-04-02 010105" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/fda6929d-e58a-4b01-9c19-da2aca465a7e">
+<img width="800" alt="Screenshot 2024-04-02 005910" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/48624b83-dbba-4d87-b82d-5d93efa15e2a">
+<img width="800" alt="Screenshot 2024-04-02 005809" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/24640d79-b926-4d84-9447-ec9c4eeda24a">
+<img width="800" alt="Screenshot 2024-04-02 005723" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/1688dec1-da93-4b2a-8ae1-eee1574d7a78">
+<img width="800" alt="Screenshot 2024-04-02 005554" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/bd95a66e-cd40-454a-b5c7-f9b8814af2fb">
+<img width="800" alt="Screenshot 2024-04-02 010814" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/e03757bd-5f61-47cb-a319-d61b63eae20f">
 
 
 ### Release Mode (C and x86-64)
 
 
-
-### Release Mode (x86-64)
 
