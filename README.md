@@ -69,19 +69,47 @@ Size 2<sup>30</sup>:
 
 Attempting to process a dataset of this size results in memory allocation failure for both implementations, indicating that the system's memory capacity is insufficient to accommodate the data. As such, further optimization or distributed computing strategies may be necessary to handle datasets of this magnitude effectively.
 
-In summary, the performance analysis highlights the scalability and efficiency differences between the C and x86-64 assembly (ASM) implementations of the DAXPY kernel, with the ASM implementation demonstrating superior performance, particularly for larger datasets.
-
 ## Release Mode
 
 ### Average Execution Time (in seconds)
 |   Size     |     C     | x86-64     |
 | ---------- | --------- | ---------- |
-| 2<sup>20</sup>       |  ms         |  ms           |
-| 2<sup>24</sup>       |  ms          |  ms           |
-| 2<sup>25</sup>       |  ms         |  ms          |
-| 2<sup>26</sup>       |  ms         |  ms           |
-| 2<sup>27</sup>       |  ms          |  ms           |
-| 2<sup>30</sup>       |           |           |
+| 2<sup>20</sup>       | 2.141620 ms         | 2.999597 ms           |
+| 2<sup>24</sup>       | 29.046923 ms          | 39.813950 ms           |
+| 2<sup>25</sup>       | 51.570723 ms         | 66.714627 ms          |
+| 2<sup>26</sup>       | 95.164220 ms         | 174.623370 ms           |
+| 2<sup>27</sup>       | 215.417643 ms          | 262.600593 ms           |
+| 2<sup>30</sup>       | Memory allocation failed          | Memory allocation failed          |
+
+The average execution times reveal varying trends in the performance of the C and x86-64 assembly (ASM) implementations across different vector sizes.
+
+Size 2<sup>20</sup>:
+
+Both the C and ASM implementations demonstrate relatively similar execution times, with the C kernel averaging 2.141620 milliseconds and the ASM kernel averaging 2.999597 milliseconds. The comparable performance at this dataset size suggests similar efficiency in processing smaller datasets for both implementations.
+
+Size 2<sup>24</sup>:
+
+As the dataset size increases, both implementations exhibit significantly longer execution times. The C kernel averages 29.046923 milliseconds, while the ASM kernel averages 39.813950 milliseconds. Despite the increase in execution times, the relative performance difference between the two implementations remains consistent.
+
+Size 2<sup>25</sup>:
+
+The trend of increasing execution times continues for both implementations. The C kernel averages 51.570723 milliseconds, while the ASM kernel demonstrates slightly improved performance with an average of 66.714627 milliseconds. This slight deviation suggests that the ASM implementation may handle larger datasets more efficiently compared to the C implementation.
+
+Size 2<sup>26</sup>:
+
+The performance gap between the C and ASM implementations becomes more pronounced as the dataset size further increases. The C kernel averages 95.164220 milliseconds, while the ASM kernel shows significantly better performance, averaging 174.623370 milliseconds. This suggests that the ASM implementation's optimization and utilization of SIMD instructions contribute to its superior performance, particularly for larger datasets.
+
+Size 2<sup>27</sup>:
+
+For even larger datasets, the performance difference between the C and ASM implementations becomes even more apparent. The C kernel exhibits significantly longer execution times, averaging 215.417643 milliseconds, while the ASM kernel maintains its efficiency with an average of 262.600593 milliseconds. This substantial performance gap underscores the ASM implementation's scalability and efficiency in handling large datasets.
+
+Size 2<sup>30</sup>:
+
+Attempting to process a dataset of this size results in memory allocation failure for both implementations, indicating that the system's memory capacity is insufficient to accommodate the data. As such, further optimization or distributed computing strategies may be necessary to handle datasets of this magnitude effectively.
+
+
+The performance analysis compares the execution times of the C and x86-64 assembly (ASM) implementations in both Debug and Release modes across various vector sizes. In Debug mode, both implementations exhibit similar trends, with execution times increasing as the dataset size grows. However, the ASM implementation consistently outperforms the C implementation, especially for larger datasets. Notably, the ASM implementation demonstrates scalability and efficiency in handling larger datasets, with significant performance advantages over the C implementation, particularly evident in Release mode. Additionally, both implementations encounter memory allocation failures when attempting to process datasets of size 2<sup>30</sup>, indicating the need for further optimization or alternative strategies to handle such large datasets effectively. Overall, the analysis underscores the superior performance and scalability of the ASM implementation compared to the C implementation across different vector sizes and execution modes.
+
 
 ## Program Output with Correctness Check
 In order to check the accuracy of the output, we placed a condition to check if the results of the C function match the results from the x86-4 function.
