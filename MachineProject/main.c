@@ -3,14 +3,19 @@
 #include <time.h>
 #include <windows.h>
 
-extern void daxpy_x86(long long int n, double A, double *vectorX, double *vectorY, double *vectorZ);
+extern void daxpy_x86(long long int n, double A, double* vectorX, double* vectorY, double* vectorZ);
 
 extern void daxpy_c(long long int n, double A, double* vectorX, double* vectorY, double* vectorZ);
 
 int main() {
 
 	// For getting time
-	int begin, end;
+	//int begin, end;
+
+	LARGE_INTEGER frequency;
+	LARGE_INTEGER start;
+	LARGE_INTEGER end;
+
 	double time_taken = 0, elapsed_time = 0;
 	double average_time = 0;
 
@@ -18,7 +23,7 @@ int main() {
 	int check = 1;
 
 	// Length of vectors
-	const long long int n = 1 << 20;
+	const long long int n = 1 << 27;
 	const size_t ARRAY_SIZE = n * sizeof(double);
 
 	printf("LENGTH OF VECTOR: %lld\n\n", n);
@@ -54,19 +59,23 @@ int main() {
 
 	printf("--- OUTPUT FOR x86-64 ---\n");
 
+	
 	int loop = 30;
-	for (int j = 0; j < loop; j++) {
-		begin = clock();
+	
+	// Measure elapsed time
+	QueryPerformanceFrequency(&frequency);
+	for (int j = 0; j < 30; j++) {
+		QueryPerformanceCounter(&start);
 		daxpy_x86(n, A, vectorX, vectorY, vectorZ1);
-		end = clock();
+		QueryPerformanceCounter(&end);
 
-		time_taken = ((double)(end - begin)) * 1e3 / CLOCKS_PER_SEC;
-		elapsed_time += time_taken;
+		elapsed_time += (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
 	}
 
-	average_time = elapsed_time / loop;
+	average_time = elapsed_time / 30;
 
-	printf("Average time: %.6f ms (%d iterations)\n\n", average_time, loop);
+	printf("Average time: %.6f milliseconds (30 iterations)\n\n", average_time * 1000);
+	
 
 	// Display the first ten elements
 	printf("Z --> ");
@@ -84,27 +93,28 @@ int main() {
 	}
 
 	// ------- DIVIDER ------- 
-
+	
 	// Call the function to fill the cache 
 	daxpy_c(n, A, vectorX, vectorY, vectorZ2);
 
 	printf("\n\n--- OUTPUT FOR C ---\n");
 
 	// Initialize again
-	begin = 0, end = 0, time_taken = 0, elapsed_time = 0, average_time = 0; 
+	time_taken = 0, elapsed_time = 0, average_time = 0; 
 	
-	for (int j = 0; j < loop; j++) {
-		begin = clock();
+	// Measure elapsed time
+	QueryPerformanceFrequency(&frequency);
+	for (int j = 0; j < 30; j++) {
+		QueryPerformanceCounter(&start);
 		daxpy_c(n, A, vectorX, vectorY, vectorZ2);
-		end = clock();
+		QueryPerformanceCounter(&end);
 
-		time_taken = ((double)(end - begin)) * 1e3 / CLOCKS_PER_SEC;
-		elapsed_time += time_taken;
+		elapsed_time += (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
 	}
 
-	average_time = elapsed_time / loop;
+	average_time = elapsed_time / 30;
 
-	printf("Average time: %.6f ms (%d iterations)\n\n", average_time, loop);
+	printf("Average time: %.6f milliseconds (30 iterations)\n\n", average_time * 1000);
 
 	printf("Z --> ");
 	if (n > 10) {
@@ -119,8 +129,8 @@ int main() {
 		}
 		printf("\n");
 	}
-
-	printf("\nACCURACY TEST\n");
+	
+	printf("\n\nACCURACY TEST\n");
 
 	for (int i = 0; i < n; i++) {
 		if (vectorZ1[i] != vectorZ2[i]) {
@@ -129,7 +139,7 @@ int main() {
 	}
 
 	if (check != 0) {
-		printf("All elements are the same for both vectors. Thus, both C and x86-64 functions share the same results");
+		printf("All elements are the same for both vectors. Thus, both C and x86-64 functions share the same results\n\n\n");
 	}
 	else {
 		printf("There is a difference...");
@@ -144,4 +154,3 @@ int main() {
 
 	return 0;
 }
-
