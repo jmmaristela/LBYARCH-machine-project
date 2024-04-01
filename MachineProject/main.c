@@ -3,15 +3,19 @@
 #include <time.h>
 #include <windows.h>
 
-extern void daxpy(long long int n, double A, double *X, double* Y, double* Z);
+extern void daxpy_x86(long long int n, double A, double *vectorX, double *vectorY, double *vectorZ);
+
+extern void daxpy_c(long long int n, double A, double* vectorX, double* vectorY, double* vectorZ);
 
 int main() {
 
 	// Length of vectors
-	const long long int n = 3;
+	const long long int n = 1 << 20;
 	const size_t ARRAY_SIZE = n * sizeof(double);
 
-	const double A = 2.0; // Scalar variable A
+	printf("LENGTH OF VECTOR: %lld\n\n", n);
+
+	double A = 2.0;
 
 	// Declaration
 	double* vectorX, * vectorY, * vectorZ;
@@ -27,35 +31,42 @@ int main() {
 		return 1; 
 	}
 
-	// sample only
-	vectorX[0] = 1.0;
-	vectorX[1] = 2.0;
-	vectorX[2] = 3.0;
-
-	vectorY[0] = 11.0;
-	vectorY[1] = 12.0;
-	vectorY[2] = 13.0;
-
-	for (int i = 0; i < n; i++) {
-		vectorZ[i] = 0.0;
+	// Store data inside vectors
+	int count;
+	double i, j;
+	for (count = 0, i = 1.0, j = 11.0; count < n; count++, i++, j++) {
+		vectorX[count] = i;
+		vectorY[count] = j;
 	}
 
-	printf("%.2f, ", vectorX[0]);
-	printf("%.2f, ", vectorX[1]);
-	printf("%.2f, ", vectorX[2]);
+	// Call the function
+	daxpy_x86(n, A, vectorX, vectorY, vectorZ);
 
-	printf("%.2f, ", vectorY[0]);
-	printf("%.2f, ", vectorY[1]);
-	printf("%.2f, ", vectorY[2]);
 
-	daxpy(n, A, vectorX, vectorY, vectorZ);
-
-	printf("Z: ");
-	for (int i = 0; i < n; i++) {
-		printf("%.2f, ", vectorZ[i]);
+	printf("---OUTPUT FOR x86-64---\n");
+	// Display the first ten elements
+	printf("Z --> ");
+	if (n > 10) {
+		for (int i = 0; i < 10; i++) {
+			printf("%.2f, ", vectorZ[i]);
+		}
+		printf("\n");
 	}
-	printf("\n");
-	
+	else {
+		for (int i = 0; i < n; i++) {
+			printf("%.2f, ", vectorZ[i]);
+		}
+		printf("\n");
+	}
+
+
+
+	// Free memory allocated 
+	free(vectorX);
+	free(vectorY);
+	free(vectorZ);
+
+
 	
 	return 0;
 }
