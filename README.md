@@ -107,6 +107,11 @@ Below are the screenshots of the program output:
 
 
 ### Release Mode (C and x86-64)
+<img width="800" alt="Screenshot 2024-04-02 022417" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/143586bc-086b-43d7-b86f-2c99502a1b6a">
+<img width="800" alt="Screenshot 2024-04-02 022545" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/0fd5f0d3-9812-4e82-9120-04c72c0655cf">
+<img width="800" alt="Screenshot 2024-04-02 022735" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/ee31c21d-81a6-4550-b218-31b2b5791362">
+<img width="800" alt="Screenshot 2024-04-02 023139" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/4fb6cac9-a8d5-4d52-937f-fa1dd50992ae">
+<img width="800" alt="Screenshot 2024-04-02 023312" src="https://github.com/jmmaristela/LBYARCH-machine-project/assets/97452438/a7b634e6-a825-4530-b6ae-c40e04d27fac">
 
 
 
