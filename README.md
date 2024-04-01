@@ -1,14 +1,27 @@
 # LBYARCH Machine Project 2
 
-<h4> BACOSA, GABRIEL LUIS B.</h4>
+## DAXPY Kernel Implementation in C and x86-64 Assembly
 
-<h4>MARISTELA, Joseph Miguel A.</h4>
 
-<h4>S16</h4>
+<h4>BACOSA, Gabriel Luis B.<h4>
+<h4>MARISTELA, Joseph Miguel A.<h4>
+<h4>Section S16<h4>
+    
+## Introduction
 
-<br>**Project Specifications**
+This repository contains implementations of the DAXPY (A*X + Y) function kernel in both C and x86-64 assembly language.
 
-Write the kernel in (1) C program and (2) an x86-64 assembly language. The kernel is to perform DAXPY (A*X + Y) function.
+## Implementation Details / Project Specifications
+
+The kernel performs the following operation:
+
+Z[i] = A * X[i] + Y[i]
+
+Where:
+- A is a double-precision float scalar.
+- X, Y, and Z are double-precision float vectors of length n.
+
+Functional scalar SIMD registers and floating-point instructions are utilized for both versions.
 
 Input: Scalar variable n (integer) contains the length of the vector; Scalar variable A is a double-precision float. Vectors X, Y and Z are double-precision float.
 
@@ -27,8 +40,30 @@ Note:
 | 2<sup>24</sup>       |           |            |
 | 2<sup>30</sup>       |           |            |
 
-Analysis
+## Performance Analysis
 
-Screenshot
+### Average Execution Time (in seconds)
 
-## Release Mode
+(data here)
+
+### Analysis
+
+The performance analysis reveals that...
+
+## Program Output with Correctness Check
+
+
+### Debug Mode (C)
+
+
+
+### Debug Mode (x86-64)
+
+
+
+### Release Mode (C)
+
+
+
+### Release Mode (x86-64)
+
