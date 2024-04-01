@@ -71,6 +71,18 @@ Attempting to process a dataset of this size results in memory allocation failur
 
 In summary, the performance analysis highlights the scalability and efficiency differences between the C and x86-64 assembly (ASM) implementations of the DAXPY kernel, with the ASM implementation demonstrating superior performance, particularly for larger datasets.
 
+## Release Mode
+
+### Average Execution Time (in seconds)
+|   Size     |     C     | x86-64     |
+| ---------- | --------- | ---------- |
+| 2<sup>20</sup>       |  ms         |  ms           |
+| 2<sup>24</sup>       |  ms          |  ms           |
+| 2<sup>25</sup>       |  ms         |  ms          |
+| 2<sup>26</sup>       |  ms         |  ms           |
+| 2<sup>27</sup>       |  ms          |  ms           |
+| 2<sup>30</sup>       |           |           |
+
 ## Program Output with Correctness Check
 
 
