@@ -33,7 +33,7 @@ Note:
 
 ## Debug Mode
 
-
+### Average Execution Time (in seconds)
 |   Size     |     C     | x86-64     |
 | ---------- | --------- | ---------- |
 | 2<sup>20</sup>       |           |            |
@@ -42,7 +42,6 @@ Note:
 
 ## Performance Analysis
 
-### Average Execution Time (in seconds)
 
 (data here)
 
