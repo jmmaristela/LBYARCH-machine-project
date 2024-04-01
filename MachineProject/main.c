@@ -23,7 +23,7 @@ int main() {
 	int check = 1;
 
 	// Length of vectors
-	const long long int n = 1 << 27;
+	const long long int n = 1 << 20;
 	const size_t ARRAY_SIZE = n * sizeof(double);
 
 	printf("LENGTH OF VECTOR: %lld\n\n", n);
