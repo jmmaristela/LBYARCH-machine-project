@@ -84,17 +84,25 @@ In summary, the performance analysis highlights the scalability and efficiency d
 | 2<sup>30</sup>       |           |           |
 
 ## Program Output with Correctness Check
+In order to check the accuracy of the output, we placed a condition to check if the results of the C function match the results from the x86-4 function.
+
+``` c
+if (check != 0) {
+	printf("All elements are the same for both vectors. Thus, both C and x86-64 functions share the same results\n\n\n");
+}
+else {
+	printf("There is a difference...");
+}
+```
+
+Below are the screenshots of the program output 
+
+### Debug Mode (C and x86-64)
 
 
-### Debug Mode (C)
 
 
-
-### Debug Mode (x86-64)
-
-
-
-### Release Mode (C)
+### Release Mode (C and x86-64)
 
 
 
