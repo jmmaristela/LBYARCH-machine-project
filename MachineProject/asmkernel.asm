@@ -31,16 +31,16 @@ daxpy_loop:
     xorpd xmm14, xmm14
     xorpd xmm15, xmm15
     
-    movsd xmm13, [r8+ r10*8] ; xmm13 now contains X[i]?
-    movsd xmm14, [r9 + r10*8] ; xmm14 now contains Y[i]?
+    movsd xmm13, [r8+ r10*8] ; xmm13 now contains X[i]
+    movsd xmm14, [r9 + r10*8] ; xmm14 now contains Y[i]
     
-    mulsd xmm13, xmm1 ; A * X[i]?
+    mulsd xmm13, xmm1 ; A * X[i]
     
-    addsd xmm14, xmm13 ; Y[i] + A * X[i]?
+    addsd xmm14, xmm13 ; Y[i] + A * X[i]
     
     movsd xmm15, xmm14
     
-    movsd [rsi + r10*8], xmm15 ; assign to Z???
+    movsd [rsi + r10*8], xmm15 ; assign to Z
     
     ;increment counter
     inc r10
